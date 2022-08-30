@@ -5,7 +5,7 @@ import s from './Form.module.css';
 const Form = () => {
   const [formData, setFormData] = useState({ name: '', number: '' });
   const { data } = useGetContactsNameQuery();
-  const [createContact] = useCreateContactMutation();
+  const [createContact, {isLoading}] = useCreateContactMutation();
 
   const inputValue = event => {
     const name = event.target.name;
@@ -59,8 +59,8 @@ const Form = () => {
             className={s.mainForm_input}
           />
         </label>
-        <button type="submit" className={s.mainForm_btn}>
-          Add contact
+        <button type="submit" className={s.mainForm_btn} disabled={isLoading}>
+          {isLoading ? 'Loading..' : 'Add contact'} 
         </button>
       </form>
     </>
