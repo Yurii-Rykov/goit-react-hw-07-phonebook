@@ -10,7 +10,7 @@ const App = () => {
       <Form />
       <h2>Contacts</h2>
       <Filter />
-      <ContactList />
+      <ContactList  />
     </div>
   );
 };
