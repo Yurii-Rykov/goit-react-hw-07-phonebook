@@ -1,9 +1,7 @@
 import { createReducer } from "@reduxjs/toolkit";
 import { addContact, delet, filter } from "./action";
-// import initialContacts from '../json/data.json';
 
 const initial = {
-    // items: initialContacts,
     filter: '',
 }
 

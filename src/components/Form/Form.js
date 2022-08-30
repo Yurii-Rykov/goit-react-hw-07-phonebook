@@ -1,12 +1,11 @@
 import { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { addContact } from '../../reduce/action';
+import { useCreateContactMutation, useGetContactsNameQuery } from '../../services/fetchApi';
 import s from './Form.module.css';
 
 const Form = () => {
   const [formData, setFormData] = useState({ name: '', number: '' });
-  const contacts = useSelector(state => state.items);
-  const dispatch = useDispatch();
+  const { data } = useGetContactsNameQuery();
+  const [createContact] = useCreateContactMutation();
 
   const inputValue = event => {
     const name = event.target.name;
@@ -18,12 +17,11 @@ const Form = () => {
   const handleSubmit = e => {
     e.preventDefault();
 
-    if (contacts.find(item => item.name === formData.name)) {
+    if (data.find(item => item.name === formData.name)) {
       alert(`${formData.name} is already in contacts`);
     } else {
-      dispatch(addContact(formData))
+      createContact(formData)
     }
-
     reset();
   };
 

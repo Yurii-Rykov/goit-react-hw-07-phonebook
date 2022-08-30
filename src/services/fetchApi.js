@@ -18,7 +18,15 @@ export const contactApi = createApi({
       }),
       invalidatesTags: ['contact'],
   }),
+    createContact: builder.mutation({
+      query: newContact => ({
+        url: '/contacts',
+        method: 'POST',
+        body: newContact,
+      }),
+      invalidatesTags: ['contact'],
+    }),
   }),
 });
 
-export const { useGetContactsNameQuery, useDeleteContactMutation } = contactApi;
+export const { useGetContactsNameQuery, useDeleteContactMutation, useCreateContactMutation } = contactApi;
